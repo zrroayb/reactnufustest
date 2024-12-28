@@ -10,21 +10,27 @@ function DataTable({ data }) {
     setOpenModal(true);
   };
 
+  const handleCloseModal = () => {
+    setOpenModal(false);
+    setSelectedRow(null);
+  };
+
   if (!data || data.length === 0) {
-    return <div className="no-data">No data to display</div>;
+    return <div className="no-results">Gösterilecek kayıt bulunamadı.</div>;
   }
 
   const headers = Object.keys(data[0]);
 
   return (
     <>
-      {/* Desktop Table View */}
       <div className="table-container">
         <table className="data-table">
           <thead>
             <tr>
               {headers.map((header, index) => (
-                <th key={index}>{header}</th>
+                <th key={index}>
+                  {header === "ImageUrl" ? "Fotoğraf" : header}
+                </th>
               ))}
             </tr>
           </thead>
@@ -46,38 +52,10 @@ function DataTable({ data }) {
         </table>
       </div>
 
-      {/* Mobile Card View */}
-      <div className="mobile-card-container">
-        {data.map((row, index) => (
-          <div
-            key={index}
-            className="mobile-card"
-            onClick={() => handleRowClick(row)}
-          >
-            <div className="mobile-card-content">
-              {row.ImageUrl && (
-                <img src={row.ImageUrl} alt="" className="mobile-card-image" />
-              )}
-              <div className="mobile-card-details">
-                {headers.map(
-                  (header, idx) =>
-                    header !== "ImageUrl" && (
-                      <div key={idx} className="mobile-card-row">
-                        <span className="mobile-card-label">{header}:</span>
-                        <span>{row[header]}</span>
-                      </div>
-                    )
-                )}
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-
       {selectedRow && (
         <PopupModal
           open={openModal}
-          handleClose={() => setOpenModal(false)}
+          handleClose={handleCloseModal}
           data={selectedRow}
         />
       )}
