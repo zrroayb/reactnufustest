@@ -1,17 +1,26 @@
 import React, { useState } from "react";
 import { productData } from "./data";
-import PopupModal from "../components/PopupModal"; // Make sure path is correct
+import PopupModal from "../components/PopupModal";
 
 function DataTable({ searchTerm }) {
   const [selectedPerson, setSelectedPerson] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
 
+  // Filter data based on search term
   const filteredData = productData.filter(
     (item) =>
       item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       item.surname.toLowerCase().includes(searchTerm.toLowerCase()) ||
       item.city.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  // Calculate pagination
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
   const handleClick = (person) => {
     setSelectedPerson(person);
@@ -22,6 +31,8 @@ function DataTable({ searchTerm }) {
     setShowModal(false);
     setSelectedPerson(null);
   };
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <>
@@ -38,7 +49,7 @@ function DataTable({ searchTerm }) {
               </tr>
             </thead>
             <tbody>
-              {filteredData.map((item) => (
+              {currentItems.map((item) => (
                 <tr
                   key={item.id}
                   onClick={() => handleClick(item)}
@@ -61,11 +72,26 @@ function DataTable({ searchTerm }) {
               ))}
             </tbody>
           </table>
+
+          {/* Pagination */}
+          <div className="pagination">
+            {Array.from({ length: totalPages }, (_, i) => (
+              <button
+                key={i + 1}
+                onClick={() => paginate(i + 1)}
+                className={`pagination-button ${
+                  currentPage === i + 1 ? "active" : ""
+                }`}
+              >
+                {i + 1}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Mobile Cards */}
         <div className="mobile-view">
-          {filteredData.map((item) => (
+          {currentItems.map((item) => (
             <div
               key={item.id}
               className="mobile-card"
@@ -97,6 +123,21 @@ function DataTable({ searchTerm }) {
               </div>
             </div>
           ))}
+
+          {/* Mobile Pagination */}
+          <div className="pagination mobile-pagination">
+            {Array.from({ length: totalPages }, (_, i) => (
+              <button
+                key={i + 1}
+                onClick={() => paginate(i + 1)}
+                className={`pagination-button ${
+                  currentPage === i + 1 ? "active" : ""
+                }`}
+              >
+                {i + 1}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 

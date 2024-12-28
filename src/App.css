@@ -332,3 +332,44 @@ body {
 .modal-body p {
   margin-bottom: 0.5rem;
 }
+
+/* Add these at the end of your existing CSS */
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.pagination-button {
+  padding: 8px 12px;
+  border: 1px solid #0A2647;
+  background: white;
+  color: #0A2647;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pagination-button:hover {
+  background: #0A2647;
+  color: white;
+}
+
+.pagination-button.active {
+  background: #0A2647;
+  color: white;
+}
+
+.mobile-pagination {
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .pagination-button {
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+}
