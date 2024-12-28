@@ -6,7 +6,12 @@ function Navigation() {
     <nav className="main-nav">
       <div className="nav-container">
         <Link to="/" className="nav-logo">
-          BODRUM NÜFUS
+          <img
+            src={process.env.PUBLIC_URL + "/images/logo_new.png"}
+            alt="Bodrum Nüfus Logo"
+            className="nav-logo-image"
+          />
+          <span className="nav-logo-text">BODRUM NÜFUS</span>
         </Link>
         <div className="nav-links">
           <Link to="/" className="nav-link">
@@ -17,9 +22,6 @@ function Navigation() {
           </Link>
           <Link to="/about" className="nav-link">
             Hakkımızda
-          </Link>
-          <Link to="/contact" className="nav-link">
-            İletişim
           </Link>
         </div>
       </div>
