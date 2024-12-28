@@ -6,6 +6,7 @@ export const productData = [
     Price: 999.99,
     Stock: 50,
     LastUpdated: "2024-03-20",
+    ImageUrl: "https://example.com/laptop-image.jpg", // Add image URLs for your products
   },
   {
     ProductID: "P002",
