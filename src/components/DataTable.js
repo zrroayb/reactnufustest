@@ -26,6 +26,25 @@ function DataTable({ data }) {
     setSelectedRow(null);
   };
 
+  const renderCellContent = (header, value) => {
+    if (header === "ImageUrl") {
+      return (
+        <img
+          src={value}
+          alt="Product"
+          style={{
+            width: "50px",
+            height: "50px",
+            objectFit: "cover",
+            borderRadius: "4px",
+            cursor: "pointer",
+          }}
+        />
+      );
+    }
+    return value;
+  };
+
   if (!data || data.length === 0) {
     return (
       <Box sx={{ textAlign: "center", my: 4 }}>
@@ -72,7 +91,9 @@ function DataTable({ data }) {
                 onClick={() => handleRowClick(row)}
               >
                 {headers.map((header, colIndex) => (
-                  <TableCell key={colIndex}>{row[header]}</TableCell>
+                  <TableCell key={colIndex}>
+                    {renderCellContent(header, row[header])}
+                  </TableCell>
                 ))}
               </TableRow>
             ))}
