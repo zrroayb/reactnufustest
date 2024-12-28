@@ -1,52 +1,46 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import "../styles/Navigation.css"; // We'll create this new file
 
 function Navigation() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="main-nav">
-      <div className="nav-container">
+    <nav className="navbar">
+      <div className="nav-brand">
         <Link to="/" className="nav-logo">
           <img
             src={process.env.PUBLIC_URL + "/images/logo_new.png"}
-            alt="Bodrum Nüfus Logo"
+            alt="Logo"
             className="nav-logo-image"
           />
           <span className="nav-logo-text">BODRUM NÜFUS</span>
         </Link>
+      </div>
 
-        <button className="mobile-menu-button" onClick={toggleMenu}>
-          <span className="menu-icon"></span>
-        </button>
+      <button
+        className={`nav-toggle ${isOpen ? "active" : ""}`}
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-        <div className={`nav-links ${isMenuOpen ? "active" : ""}`}>
-          <Link
-            to="/"
-            className="nav-link"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Ana Sayfa
-          </Link>
-          <Link
-            to="/search"
-            className="nav-link"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Kayıt Arama
-          </Link>
-          <Link
-            to="/about"
-            className="nav-link"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Hakkımızda
-          </Link>
-        </div>
+      <div className={`nav-menu ${isOpen ? "active" : ""}`}>
+        <Link to="/" className="nav-item" onClick={() => setIsOpen(false)}>
+          Ana Sayfa
+        </Link>
+        <Link
+          to="/search"
+          className="nav-item"
+          onClick={() => setIsOpen(false)}
+        >
+          Kayıt Arama
+        </Link>
+        <Link to="/about" className="nav-item" onClick={() => setIsOpen(false)}>
+          Hakkımızda
+        </Link>
       </div>
     </nav>
   );
