@@ -3,6 +3,7 @@ export const productData = [
     ProductID: "P001",
     ProductName: "Laptop",
     Category: "Electronics",
+    Owner: "Ayberk Göçer",
     Price: 999.99,
     Stock: 50,
     LastUpdated: "2024-03-20",
