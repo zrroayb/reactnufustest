@@ -1,33 +1,25 @@
-import React, { useState, useEffect } from "react";
-import SearchBar from "../components/SearchBar";
-import DataTable from "../components/DataTable";
-import { productData } from "../components/data";
+import React, { useState } from "react";
+import DataTable from "../components/DataTable"; // Updated path
 
 function Search() {
-  const [data, setData] = useState([]);
-  const [filteredData, setFilteredData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
-  useEffect(() => {
-    setData(productData);
-    setFilteredData(productData);
-  }, []);
-
-  const handleSearch = (searchTerm) => {
-    const filtered = data.filter((item) =>
-      Object.values(item).some((value) =>
-        value.toString().toLowerCase().includes(searchTerm.toLowerCase())
-      )
-    );
-    setFilteredData(filtered);
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
   };
 
   return (
-    <div className="page-container">
-      <h1 className="page-title">Nüfus Kayıt Arama</h1>
-      <div className="content-card">
-        <SearchBar onSearch={handleSearch} />
-        <DataTable data={filteredData} />
+    <div>
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder="İsim, Soyisim veya Şehir ara..."
+          value={searchTerm}
+          onChange={handleSearch}
+          className="search-input"
+        />
       </div>
+      <DataTable searchTerm={searchTerm} />
     </div>
   );
 }
