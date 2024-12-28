@@ -1,15 +1,4 @@
 import React, { useState } from "react";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  Box,
-  Typography,
-} from "@mui/material";
 import PopupModal from "./PopupModal";
 
 function DataTable({ data }) {
@@ -21,91 +10,77 @@ function DataTable({ data }) {
     setOpenModal(true);
   };
 
-  const handleCloseModal = () => {
-    setOpenModal(false);
-    setSelectedRow(null);
-  };
-
-  const renderCellContent = (header, value) => {
-    if (header === "ImageUrl") {
-      return (
-        <img
-          src={value}
-          alt="Product"
-          style={{
-            width: "50px",
-            height: "50px",
-            objectFit: "cover",
-            borderRadius: "4px",
-            cursor: "pointer",
-          }}
-        />
-      );
-    }
-    return value;
-  };
-
   if (!data || data.length === 0) {
-    return (
-      <Box sx={{ textAlign: "center", my: 4 }}>
-        <Typography color="text.secondary">
-          No data to display. Please upload an Excel file.
-        </Typography>
-      </Box>
-    );
+    return <div className="no-data">No data to display</div>;
   }
 
   const headers = Object.keys(data[0]);
 
   return (
     <>
-      <TableContainer component={Paper} sx={{ mt: 3, boxShadow: 2 }}>
-        <Table sx={{ minWidth: 650 }} aria-label="data table">
-          <TableHead>
-            <TableRow sx={{ backgroundColor: "#f5f5f5" }}>
+      {/* Desktop Table View */}
+      <div className="table-container">
+        <table className="data-table">
+          <thead>
+            <tr>
               {headers.map((header, index) => (
-                <TableCell
-                  key={index}
-                  sx={{
-                    fontWeight: "bold",
-                    color: "#1976d2",
-                  }}
-                >
-                  {header}
-                </TableCell>
+                <th key={index}>{header}</th>
               ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
+            </tr>
+          </thead>
+          <tbody>
             {data.map((row, rowIndex) => (
-              <TableRow
-                key={rowIndex}
-                sx={{
-                  "&:nth-of-type(odd)": { backgroundColor: "#fafafa" },
-                  "&:hover": {
-                    backgroundColor: "#f0f7ff",
-                    cursor: "pointer",
-                  },
-                  transition: "background-color 0.2s",
-                }}
-                onClick={() => handleRowClick(row)}
-              >
+              <tr key={rowIndex} onClick={() => handleRowClick(row)}>
                 {headers.map((header, colIndex) => (
-                  <TableCell key={colIndex}>
-                    {renderCellContent(header, row[header])}
-                  </TableCell>
+                  <td key={colIndex}>
+                    {header === "ImageUrl" ? (
+                      <img src={row[header]} alt="" className="table-image" />
+                    ) : (
+                      row[header]
+                    )}
+                  </td>
                 ))}
-              </TableRow>
+              </tr>
             ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+          </tbody>
+        </table>
+      </div>
 
-      <PopupModal
-        open={openModal}
-        handleClose={handleCloseModal}
-        data={selectedRow}
-      />
+      {/* Mobile Card View */}
+      <div className="mobile-card-container">
+        {data.map((row, index) => (
+          <div
+            key={index}
+            className="mobile-card"
+            onClick={() => handleRowClick(row)}
+          >
+            <div className="mobile-card-content">
+              {row.ImageUrl && (
+                <img src={row.ImageUrl} alt="" className="mobile-card-image" />
+              )}
+              <div className="mobile-card-details">
+                {headers.map(
+                  (header, idx) =>
+                    header !== "ImageUrl" && (
+                      <div key={idx} className="mobile-card-row">
+                        <span className="mobile-card-label">{header}:</span>
+                        <span>{row[header]}</span>
+                      </div>
+                    )
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {selectedRow && (
+        <PopupModal
+          open={openModal}
+          handleClose={() => setOpenModal(false)}
+          data={selectedRow}
+        />
+      )}
     </>
   );
 }
