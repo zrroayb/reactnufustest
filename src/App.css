@@ -16,7 +16,7 @@ body {
 .main-nav {
   background: linear-gradient(135deg, #0A2647 0%, #144272 100%);
   padding: 1rem 0;
-  box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -46,7 +46,7 @@ body {
   border-radius: 50%;
   padding: 2px;
   background-color: white;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
 }
 
@@ -55,134 +55,71 @@ body {
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 1px;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Cool Navigation Styles */
-.menu-trigger {
+/* Hamburger Menu Styles */
+.hamburger {
   display: none;
   background: none;
   border: none;
-  width: 30px;
-  height: 22px;
-  position: relative;
-  z-index: 1001;
   cursor: pointer;
+  padding: 15px;
+  margin-left: auto;
+  z-index: 1000;
 }
 
-.menu-trigger span {
+.hamburger-line {
   display: block;
-  position: absolute;
+  width: 25px;
   height: 2px;
-  width: 100%;
-  background: #FFD700;
-  border-radius: 2px;
-  opacity: 1;
-  left: 0;
-  transform: rotate(0deg);
-  transition: .25s ease-in-out;
+  margin: 5px 0;
+  background-color: #FFD700;
+  transition: all 0.3s ease-in-out;
 }
 
-.menu-trigger span:nth-child(1) { top: 0px; }
-.menu-trigger span:nth-child(2) { top: 10px; }
-.menu-trigger span:nth-child(3) { top: 20px; }
-
-.menu-trigger.active span:nth-child(1) {
-  top: 10px;
-  transform: rotate(135deg);
+.hamburger.active .hamburger-line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
 }
 
-.menu-trigger.active span:nth-child(2) {
+.hamburger.active .hamburger-line:nth-child(2) {
   opacity: 0;
-  left: -60px;
 }
 
-.menu-trigger.active span:nth-child(3) {
-  top: 10px;
-  transform: rotate(-135deg);
+.hamburger.active .hamburger-line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
-/* Navigation Overlay */
-.nav-overlay {
+/* Mobile Navigation Styles */
+.mobile-nav {
+  display: none;
   position: fixed;
   top: 0;
-  right: -100%;
+  left: 0;
   width: 100%;
   height: 100vh;
   background: rgba(10, 38, 71, 0.98);
-  backdrop-filter: blur(10px);
-  z-index: 1000;
-  transition: 0.5s ease-in-out;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding-top: 80px;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
 }
 
-.nav-overlay.active {
-  right: 0;
+.mobile-nav.active {
+  transform: translateX(0);
 }
 
-.nav-menu {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 80px 40px 40px;
-}
-
-.nav-menu-header {
-  text-align: center;
-  margin-bottom: 60px;
-}
-
-.nav-menu-logo {
-  height: 80px;
-  width: auto;
-  border-radius: 50%;
-  box-shadow: 0 0 20px rgba(255,215,0,0.2);
-}
-
-.nav-menu-links {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  margin-bottom: auto;
-}
-
-.nav-menu-link {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+.mobile-link {
+  display: block;
   color: white;
   text-decoration: none;
-  font-size: 1.5rem;
-  padding: 15px;
-  transition: all 0.3s ease;
-}
-
-.nav-link-number {
-  color: #FFD700;
-  font-size: 1rem;
-  font-weight: 600;
-  opacity: 0.7;
-}
-
-.nav-menu-link:hover,
-.nav-menu-link.active {
-  background: rgba(255, 215, 0, 0.1);
-  transform: translateX(10px);
-  border-radius: 8px;
-}
-
-.nav-menu-link:hover .nav-link-number,
-.nav-menu-link.active .nav-link-number {
-  opacity: 1;
-}
-
-.nav-menu-footer {
+  padding: 15px 30px;
+  font-size: 1.2rem;
   text-align: center;
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.mobile-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 /* Desktop Navigation */
@@ -202,7 +139,7 @@ body {
 
 .nav-link:hover,
 .nav-link.active {
-  background-color: rgba(255,255,255,0.15);
+  background-color: rgba(255, 255, 255, 0.15);
   transform: translateY(-2px);
 }
 
@@ -221,7 +158,7 @@ body {
   background: white;
   padding: 30px;
   border-radius: 15px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
   margin-bottom: 30px;
 }
 
@@ -252,7 +189,7 @@ body {
   margin: 20px 0;
   background: white;
   border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.05);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
 }
 
 .data-table {
@@ -304,7 +241,7 @@ body {
   height: 50px;
   object-fit: cover;
   border-radius: 6px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Search Bar Styles */
@@ -325,7 +262,7 @@ body {
 .search-input:focus {
   border-color: #0A2647;
   outline: none;
-  box-shadow: 0 0 15px rgba(10,38,71,0.1);
+  box-shadow: 0 0 15px rgba(10, 38, 71, 0.1);
 }
 
 /* Home Page Styles */
@@ -342,13 +279,13 @@ body {
   border-radius: 20px;
   text-align: center;
   margin-bottom: 60px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .hero-section h1 {
   font-size: 3rem;
   margin-bottom: 20px;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .hero-section p {
@@ -367,12 +304,12 @@ body {
   font-weight: 600;
   font-size: 1.1rem;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .hero-button:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 /* Mobile Card View */
@@ -385,14 +322,14 @@ body {
   border-radius: 12px;
   padding: 16px;
   margin-bottom: 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .mobile-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .mobile-card-content {
@@ -424,27 +361,9 @@ body {
   margin-right: 8px;
 }
 
-/* Animation Effects */
-@keyframes slideIn {
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.nav-menu-link {
-  opacity: 0;
-  transform: translateX(20px);
-  animation: slideIn 0.5s forwards;
-}
-
-.nav-overlay.active .nav-menu-link:nth-child(1) { animation-delay: 0.2s; }
-.nav-overlay.active .nav-menu-link:nth-child(2) { animation-delay: 0.3s; }
-.nav-overlay.active .nav-menu-link:nth-child(3) { animation-delay: 0.4s; }
-
 /* Responsive Design */
 @media screen and (max-width: 768px) {
-  .menu-trigger {
+  .hamburger {
     display: block;
   }
 
@@ -452,12 +371,12 @@ body {
     display: none;
   }
 
-  .nav-menu-link {
-    font-size: 1.3rem;
+  .mobile-nav {
+    display: block;
   }
 
   .nav-container {
-    padding: 10px;
+    padding: 10px 20px;
   }
 
   .hero-section {
@@ -510,12 +429,6 @@ body {
   }
 }
 
-@media screen and (min-width: 769px) {
-  .nav-overlay {
-    display: none;
-  }
-}
-
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
@@ -536,6 +449,14 @@ body {
 }
 
 /* Utility Classes */
-.text-center { text-align: center; }
-.mt-4 { margin-top: 40px; }
-.mb-4 { margin-bottom: 40px; }
+.text-center {
+  text-align: center;
+}
+
+.mt-4 {
+  margin-top: 40px;
+}
+
+.mb-4 {
+  margin-bottom: 40px;
+}
