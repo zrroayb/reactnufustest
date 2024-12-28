@@ -28,7 +28,11 @@ function Navigation() {
       </button>
 
       <div className={`nav-menu ${isOpen ? "active" : ""}`}>
-        <Link to="/" className="nav-item" onClick={() => setIsOpen(false)}>
+        <Link
+          to="/anasayfa"
+          className="nav-item"
+          onClick={() => setIsOpen(false)}
+        >
           Ana Sayfa
         </Link>
         <Link

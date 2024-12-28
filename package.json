@@ -16,7 +16,7 @@
     "react-scripts": "5.0.1",
     "xlsx": "^0.18.5"
   },
-  "homepage": "https://zrroayb.github.io/reactnufustest",
+  "homepage": "https://zrroayb.github.io/reactnufustest/anasayfa",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

@@ -1,26 +1,34 @@
 import React from "react";
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Navigation from "./components/Navigation";
-import Home from "./pages/Home";
 import Search from "./pages/Search";
+import Home from "./pages/Home";
 import About from "./pages/About";
+import FeedbackSection from "./components/FeedbackSection";
 import "./App.css";
 
 function App() {
   return (
-    <div className="app-container">
-      <Router>
+    <Router>
+      <div className="app-container">
         <Navigation />
-        <div className="main-content">
+        <div className="content-wrapper">
           <Routes>
-            <Route path="/" element={<Home />} />
+            {/* Redirect from / to /anasayfa */}
+            <Route path="/" element={<Navigate to="/anasayfa" replace />} />
+            <Route path="/anasayfa" element={<Home />} />
             <Route path="/search" element={<Search />} />
             <Route path="/about" element={<About />} />
-            <Route path="*" element={<Home />} />
           </Routes>
+          <FeedbackSection />
         </div>
-      </Router>
-    </div>
+      </div>
+    </Router>
   );
 }
 
