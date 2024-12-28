@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/reactnufustest/static/css/main.7f391b5e.css",
-    "main.js": "/reactnufustest/static/js/main.8ccc86d4.js",
-    "static/js/151.71b390eb.chunk.js": "/reactnufustest/static/js/151.71b390eb.chunk.js",
-    "index.html": "/reactnufustest/index.html",
-    "main.7f391b5e.css.map": "/reactnufustest/static/css/main.7f391b5e.css.map",
-    "main.8ccc86d4.js.map": "/reactnufustest/static/js/main.8ccc86d4.js.map",
-    "151.71b390eb.chunk.js.map": "/reactnufustest/static/js/151.71b390eb.chunk.js.map"
+    "main.css": "/reactnufustest/anasayfa/static/css/main.7f391b5e.css",
+    "main.js": "/reactnufustest/anasayfa/static/js/main.c2d5c979.js",
+    "static/js/151.71b390eb.chunk.js": "/reactnufustest/anasayfa/static/js/151.71b390eb.chunk.js",
+    "index.html": "/reactnufustest/anasayfa/index.html",
+    "main.7f391b5e.css.map": "/reactnufustest/anasayfa/static/css/main.7f391b5e.css.map",
+    "main.c2d5c979.js.map": "/reactnufustest/anasayfa/static/js/main.c2d5c979.js.map",
+    "151.71b390eb.chunk.js.map": "/reactnufustest/anasayfa/static/js/151.71b390eb.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7f391b5e.css",
-    "static/js/main.8ccc86d4.js"
+    "static/js/main.c2d5c979.js"
   ]
 }
