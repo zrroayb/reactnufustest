@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import Home from "./pages/Home";
 import Search from "./pages/Search";
@@ -9,7 +9,7 @@ import "./App.css";
 function App() {
   return (
     <div className="app-container">
-      <Router basename="/bodrum-nufus">
+      <Router>
         <Navigation />
         <div className="main-content">
           <Routes>
