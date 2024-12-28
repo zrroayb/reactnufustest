@@ -13,9 +13,10 @@ function App() {
         <Navigation />
         <div className="main-content">
           <Routes>
-            <Route exact path="/" element={<Home />} />
+            <Route path="/" element={<Home />} />
             <Route path="/search" element={<Search />} />
             <Route path="/about" element={<About />} />
+            <Route path="*" element={<Home />} />
           </Routes>
         </div>
       </Router>
